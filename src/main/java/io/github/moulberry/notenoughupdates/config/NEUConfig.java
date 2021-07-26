@@ -1,8 +1,9 @@
-package io.github.moulberry.notenoughupdates.options;
+package io.github.moulberry.notenoughupdates.config;
 
-import com.google.common.collect.Lists;
 import com.google.gson.annotations.Expose;
 import io.github.moulberry.notenoughupdates.NotEnoughUpdates;
+import io.github.moulberry.notenoughupdates.config.special.Hidden;
+import io.github.moulberry.notenoughupdates.config.special.HiddenProfileSpecific;
 import io.github.moulberry.notenoughupdates.core.GuiScreenElementWrapper;
 import io.github.moulberry.notenoughupdates.core.config.Config;
 import io.github.moulberry.notenoughupdates.core.config.Position;
@@ -11,7 +12,7 @@ import io.github.moulberry.notenoughupdates.core.config.gui.GuiPositionEditor;
 import io.github.moulberry.notenoughupdates.miscgui.GuiEnchantColour;
 import io.github.moulberry.notenoughupdates.miscgui.GuiInvButtonEditor;
 import io.github.moulberry.notenoughupdates.miscgui.NEUOverlayPlacements;
-import io.github.moulberry.notenoughupdates.options.seperateSections.*;
+import io.github.moulberry.notenoughupdates.config.settings.*;
 import io.github.moulberry.notenoughupdates.overlays.*;
 import io.github.moulberry.notenoughupdates.util.SBInfo;
 import net.minecraft.client.Minecraft;
@@ -19,7 +20,6 @@ import net.minecraftforge.client.ClientCommandHandler;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class NEUConfig extends Config {
@@ -256,51 +256,6 @@ public class NEUConfig extends Config {
     @Expose
     public DungeonMapConfig dungeonMap = new DungeonMapConfig();
 
-    public static class Hidden {
-        @Expose
-        public HashMap<String, NEUConfig.HiddenProfileSpecific> profileSpecific = new HashMap<>();
-        @Expose public List<NEUConfig.InventoryButton> inventoryButtons = createDefaultInventoryButtons();
-
-        @Expose public boolean enableItemEditing = false;
-        @Expose public boolean cacheRenderedItempane = true;
-        @Expose public boolean autoupdate = true;
-        @Expose public String overlaySearchBar = "";
-        @Expose public String overlayQuickCommand = "";
-        @Expose public boolean dev = false;
-        @Expose public boolean loadedModBefore = false;
-        @Expose public String selectedCape = null;
-        @Expose public int compareMode = 0;
-        @Expose public int sortMode = 0;
-        @Expose public ArrayList<Boolean> compareAscending = Lists.newArrayList(true, true, true);
-        @Expose public ArrayList<String> favourites = new ArrayList<>();
-        @Expose public ArrayList<String> previousAuctionSearches = new ArrayList<>();
-        @Expose public ArrayList<String> eventFavourites = new ArrayList<>();
-        @Expose public ArrayList<String> quickCommands = createDefaultQuickCommands();
-        @Expose public ArrayList<String> enchantColours = Lists.newArrayList(
-                "[a-zA-Z\\- ]+:\u003e:9:6:0",
-                "[a-zA-Z\\- ]+:\u003e:6:c:0",
-                "[a-zA-Z\\- ]+:\u003e:5:5:0",
-                "Experience:\u003e:3:5:0",
-                "Life Steal:\u003e:3:5:0",
-                "Scavenger:\u003e:3:5:0",
-                "Looting:\u003e:3:5:0");
-        @Expose public String repoURL = "https://github.com/Moulberry/NotEnoughUpdates-REPO/archive/master.zip";
-        @Expose public String repoCommitsURL = "https://api.github.com/repos/Moulberry/NotEnoughUpdates-REPO/commits/master";
-    }
-
-    private static ArrayList<String> createDefaultQuickCommands() {
-        ArrayList<String> arr = new ArrayList<>();
-        arr.add("/warp home:Warp Home:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzljODg4MWU0MjkxNWE5ZDI5YmI2MWExNmZiMjZkMDU5OTEzMjA0ZDI2NWRmNWI0MzliM2Q3OTJhY2Q1NiJ9fX0=");
-        arr.add("/warp hub:Warp Hub:eyJ0aW1lc3RhbXAiOjE1NTkyMTU0MTY5MDksInByb2ZpbGVJZCI6IjQxZDNhYmMyZDc0OTQwMGM5MDkwZDU0MzRkMDM4MzFiIiwicHJvZmlsZU5hbWUiOiJNZWdha2xvb24iLCJzaWduYXR1cmVSZXF1aXJlZCI6dHJ1ZSwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2Q3Y2M2Njg3NDIzZDA1NzBkNTU2YWM1M2UwNjc2Y2I1NjNiYmRkOTcxN2NkODI2OWJkZWJlZDZmNmQ0ZTdiZjgifX19");
-        arr.add("/warp dungeon_hub:Dungeon Hub:eyJ0aW1lc3RhbXAiOjE1Nzg0MDk0MTMxNjksInByb2ZpbGVJZCI6IjQxZDNhYmMyZDc0OTQwMGM5MDkwZDU0MzRkMDM4MzFiIiwicHJvZmlsZU5hbWUiOiJNZWdha2xvb24iLCJzaWduYXR1cmVSZXF1aXJlZCI6dHJ1ZSwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzliNTY4OTViOTY1OTg5NmFkNjQ3ZjU4NTk5MjM4YWY1MzJkNDZkYjljMWIwMzg5YjhiYmViNzA5OTlkYWIzM2QiLCJtZXRhZGF0YSI6eyJtb2RlbCI6InNsaW0ifX19fQ==");
-        arr.add("/craft:Crafting Table:CRAFTING_TABLE");
-        arr.add("/storage:Storage:CHEST");
-        arr.add("/wardrobe:Wardrobe:LEATHER_CHESTPLATE");
-        arr.add("/pets:Pets:BONE");
-        arr.add("neuah:NEU Auction House:GOLD_BLOCK");
-        arr.add("/bz:Bazaar:GOLD_BARDING");
-        return arr;
-    }
 
     public HiddenProfileSpecific getProfileSpecific() {
         if(SBInfo.getInstance().currentProfile == null) {
@@ -309,106 +264,6 @@ public class NEUConfig extends Config {
         return hidden.profileSpecific.computeIfAbsent(SBInfo.getInstance().currentProfile, k-> new HiddenProfileSpecific());
     }
 
-    public static class HiddenProfileSpecific {
 
-        @Expose public long godPotionDuration = 0l;
-        @Expose public long puzzlerCompleted = 0L;
-        @Expose public long firstCakeAte = 0L;
-        @Expose public long fetchurCompleted = 0L;
-        @Expose public long commissionsCompleted = 0L;
-        @Expose public long experimentsCompleted = 0L;
-        @Expose public long cookieBuffRemaining = 0L;
-
-        @Expose public int commissionMilestone = 0;
-    }
-
-    public static List<InventoryButton> createDefaultInventoryButtons() {
-        List<InventoryButton> buttons = new ArrayList<>();
-        //Below crafting
-        buttons.add(new InventoryButton(87, 63, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(87+21, 63, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(87+21*2, 63, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(87+21*3, 63, null, true, false, false, 0, ""));
-
-        //Above crafting
-        buttons.add(new InventoryButton(87, 5, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(87+21, 5, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(87+21*2, 5, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(87+21*3, 5, null, true, false, false, 0, ""));
-
-        //Crafting square
-        buttons.add(new InventoryButton(87, 25, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(87+18, 25, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(87, 25+18, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(87+18, 25+18, null, true, false, false, 0, ""));
-
-        //Crafting result
-        buttons.add(new InventoryButton(143, 35, null, true, false, false, 0, ""));
-
-        //Player menu area
-        buttons.add(new InventoryButton(60, 8, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(60, 60, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(26, 8, null, true, false, false, 0, ""));
-        buttons.add(new InventoryButton(26, 60, null, true, false, false, 0, ""));
-
-        //Right side
-        for(int i=0; i<8; i++) {
-            int y = 2+20*i;
-            if(y < 80) {
-                buttons.add(new InventoryButton(2, 2+20*i, null, false, true, false, 0, ""));
-            } else {
-                buttons.add(new InventoryButton(2, 2+20*i-166, null, false, true, true, 0, ""));
-            }
-        }
-
-        //Top side
-        for(int i=0; i<8; i++) {
-            buttons.add(new InventoryButton(4+21*i, -19, null, false, false, false, 0, ""));
-        }
-
-        //Left side
-        for(int i=0; i<8; i++) {
-            int y = 2+20*i;
-            if(y < 80) {
-                buttons.add(new InventoryButton(-19, 2+20*i, null, false, false, false, 0, ""));
-            } else {
-                buttons.add(new InventoryButton(-19, 2+20*i-166, null, false, false, true, 0, ""));
-            }
-        }
-
-        //Bottom side
-        for(int i=0; i<8; i++) {
-            buttons.add(new InventoryButton(4+21*i, 2, null, false, false, true, 0, ""));
-        }
-        return buttons;
-    }
-
-    public static class InventoryButton {
-        @Expose public int x;
-        @Expose public int y;
-        @Expose public boolean playerInvOnly;
-
-        @Expose public boolean anchorRight;
-        @Expose public boolean anchorBottom;
-
-        @Expose public int backgroundIndex;
-        @Expose public String command;
-        @Expose public String icon;
-
-        public boolean isActive() {
-            return command.trim().length() > 0;
-        }
-
-        public InventoryButton(int x, int y, String icon, boolean playerInvOnly, boolean anchorRight, boolean anchorBottom, int backgroundIndex, String command) {
-            this.x = x;
-            this.y = y;
-            this.icon = icon;
-            this.playerInvOnly = playerInvOnly;
-            this.anchorRight = anchorRight;
-            this.anchorBottom = anchorBottom;
-            this.backgroundIndex = backgroundIndex;
-            this.command = command;
-        }
-    }
 
 }

@@ -1,7 +1,7 @@
 package io.github.moulberry.notenoughupdates.miscfeatures;
 
 import io.github.moulberry.notenoughupdates.NotEnoughUpdates;
-import io.github.moulberry.notenoughupdates.options.NEUConfig;
+import io.github.moulberry.notenoughupdates.config.special.HiddenProfileSpecific;
 import io.github.moulberry.notenoughupdates.overlays.MiningOverlay;
 import io.github.moulberry.notenoughupdates.util.SBInfo;
 import io.github.moulberry.notenoughupdates.util.Utils;
@@ -122,7 +122,7 @@ public class DwarvenMinesWaypoints {
         if(!SBInfo.getInstance().getLocation().equals("mining_3")) return;
 
 
-        NEUConfig.HiddenProfileSpecific hidden = NotEnoughUpdates.INSTANCE.config.getProfileSpecific();
+        HiddenProfileSpecific hidden = NotEnoughUpdates.INSTANCE.config.getProfileSpecific();
         if(hidden == null) return;
 
         if(Minecraft.getMinecraft().currentScreen instanceof GuiChest) {
@@ -236,7 +236,7 @@ public class DwarvenMinesWaypoints {
         if(commissionFinished) {
             for(Emissary emissary : Emissary.values()) {
 
-                NEUConfig.HiddenProfileSpecific hidden = NotEnoughUpdates.INSTANCE.config.getProfileSpecific();
+                HiddenProfileSpecific hidden = NotEnoughUpdates.INSTANCE.config.getProfileSpecific();
                 if(hidden != null) {
                     if(hidden.commissionMilestone >= emissary.minMilestone) {
 

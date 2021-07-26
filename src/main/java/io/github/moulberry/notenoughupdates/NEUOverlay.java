@@ -16,7 +16,7 @@ import io.github.moulberry.notenoughupdates.mbgui.MBGuiGroupAligned;
 import io.github.moulberry.notenoughupdates.mbgui.MBGuiGroupFloating;
 import io.github.moulberry.notenoughupdates.miscfeatures.SunTzu;
 import io.github.moulberry.notenoughupdates.miscgui.HelpGUI;
-import io.github.moulberry.notenoughupdates.options.NEUConfigEditor;
+import io.github.moulberry.notenoughupdates.config.NEUConfigEditor;
 import io.github.moulberry.notenoughupdates.util.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
@@ -52,7 +52,6 @@ import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.*;
 import java.util.concurrent.ExecutorService;

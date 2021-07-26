@@ -10,7 +10,7 @@ import io.github.moulberry.notenoughupdates.core.GuiElementTextField;
 import io.github.moulberry.notenoughupdates.core.util.lerp.LerpingFloat;
 import io.github.moulberry.notenoughupdates.core.util.lerp.LerpingInteger;
 import io.github.moulberry.notenoughupdates.miscfeatures.SlotLocking;
-import io.github.moulberry.notenoughupdates.options.NEUConfig;
+import io.github.moulberry.notenoughupdates.config.NEUConfig;
 import io.github.moulberry.notenoughupdates.util.Constants;
 import io.github.moulberry.notenoughupdates.util.Utils;
 import net.minecraft.client.Minecraft;

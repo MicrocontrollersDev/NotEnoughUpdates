@@ -473,8 +473,15 @@ public class PlayerStats {
 
                 int petRarityOffset = petsJson.get("pet_rarity_offset").getAsJsonObject().get(tier).getAsInt();
                 JsonArray levelsArr = petsJson.get("pet_levels").getAsJsonArray();
+                GuiProfileViewer.PetLevel levelObj = null;
 
-                GuiProfileViewer.PetLevel levelObj = GuiProfileViewer.getPetLevel(levelsArr, petRarityOffset, exp);
+
+                if(petname.equals("GOLDEN_DRAGON")){
+                    levelObj = GuiProfileViewer.getPetLevel(levelsArr, 200, petRarityOffset, exp);
+                } else {
+                    levelObj = GuiProfileViewer.getPetLevel(levelsArr, 100, petRarityOffset, exp);
+                }
+
                 float level = levelObj.level;
                 float currentLevelRequirement = levelObj.currentLevelRequirement;
                 float maxXP = levelObj.maxXP;

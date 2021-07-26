@@ -3,13 +3,12 @@ package io.github.moulberry.notenoughupdates.miscgui;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.annotations.Expose;
 import io.github.moulberry.notenoughupdates.NotEnoughUpdates;
+import io.github.moulberry.notenoughupdates.config.special.InventoryButtons;
 import io.github.moulberry.notenoughupdates.core.GlScissorStack;
 import io.github.moulberry.notenoughupdates.core.GuiElementTextField;
 import io.github.moulberry.notenoughupdates.core.util.lerp.LerpingInteger;
-import io.github.moulberry.notenoughupdates.options.NEUConfig;
-import io.github.moulberry.notenoughupdates.util.TexLoc;
+import io.github.moulberry.notenoughupdates.config.NEUConfig;
 import io.github.moulberry.notenoughupdates.util.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -110,7 +109,7 @@ public class GuiInvButtonEditor extends GuiScreen {
         skullIcons.put("bazaar dude", "skull:c232e3820897429157619b0ee099fec0628f602fff12b695de54aef11d923ad7");
     }
 
-    private static LinkedHashMap<String, List<NEUConfig.InventoryButton>> presets = null;
+    private static LinkedHashMap<String, List<InventoryButtons.InventoryButton>> presets = null;
 
     public GuiInvButtonEditor() {
         super();
@@ -145,10 +144,10 @@ public class GuiInvButtonEditor extends GuiScreen {
             for(Map.Entry<String, JsonElement> entry : json.entrySet()) {
                 if(entry.getValue().isJsonArray()) {
                     JsonArray arr = entry.getValue().getAsJsonArray();
-                    List<NEUConfig.InventoryButton> buttons = new ArrayList<>();
+                    List<InventoryButtons.InventoryButton> buttons = new ArrayList<>();
                     for(int i=0; i<arr.size(); i++) {
                         JsonObject o = arr.get(i).getAsJsonObject();
-                        NEUConfig.InventoryButton button = NotEnoughUpdates.INSTANCE.manager.gson.fromJson(o, NEUConfig.InventoryButton.class);
+                        InventoryButtons.InventoryButton button = NotEnoughUpdates.INSTANCE.manager.gson.fromJson(o, InventoryButtons.InventoryButton.class);
                         buttons.add(button);
                     }
                     presets.put(entry.getKey(), buttons);
@@ -172,7 +171,7 @@ public class GuiInvButtonEditor extends GuiScreen {
 
     private LerpingInteger itemScroll = new LerpingInteger(0, 100);
 
-    private NEUConfig.InventoryButton editingButton = null;
+    private InventoryButtons.InventoryButton editingButton = null;
 
     private static HashMap<String, ItemStack> skullMap = new HashMap<>();
 
@@ -254,7 +253,7 @@ public class GuiInvButtonEditor extends GuiScreen {
         GlStateManager.color(1, 1, 1, 1);
         Utils.drawTexturedRect(guiLeft, guiTop, xSize, ySize, 0, xSize/256f, 0, ySize/256f, GL11.GL_NEAREST);
 
-        for(NEUConfig.InventoryButton button : NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons) {
+        for(InventoryButtons.InventoryButton button : NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons) {
             int x = guiLeft+button.x;
             int y = guiTop+button.y;
             if(button.anchorRight) {
@@ -535,7 +534,7 @@ public class GuiInvButtonEditor extends GuiScreen {
             }
         }
 
-        for(NEUConfig.InventoryButton button : NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons) {
+        for(InventoryButtons.InventoryButton button : NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons) {
             int x = guiLeft+button.x;
             int y = guiTop+button.y;
             if(button.anchorRight) {
@@ -559,7 +558,7 @@ public class GuiInvButtonEditor extends GuiScreen {
 
         if(editingButton == null) {
             int index = 0;
-            for(List<NEUConfig.InventoryButton> buttons : presets.values()) {
+            for(List<InventoryButtons.InventoryButton> buttons : presets.values()) {
                 if(mouseX >= guiLeft+xSize+22 && mouseX <= guiLeft+xSize+22+80 &&
                         mouseY >= guiTop+21+10*index && mouseY <= guiTop+21+10*index+10) {
                     NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons = buttons;

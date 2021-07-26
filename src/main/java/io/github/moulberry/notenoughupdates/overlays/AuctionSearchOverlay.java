@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import io.github.moulberry.notenoughupdates.NotEnoughUpdates;
 import io.github.moulberry.notenoughupdates.core.GuiElementTextField;
 import io.github.moulberry.notenoughupdates.core.GuiScreenElementWrapper;
-import io.github.moulberry.notenoughupdates.options.NEUConfigEditor;
+import io.github.moulberry.notenoughupdates.config.NEUConfigEditor;
 import io.github.moulberry.notenoughupdates.util.Constants;
 import io.github.moulberry.notenoughupdates.util.SBInfo;
 import io.github.moulberry.notenoughupdates.util.Utils;

@@ -2,7 +2,7 @@ package io.github.moulberry.notenoughupdates.overlays;
 
 import io.github.moulberry.notenoughupdates.NotEnoughUpdates;
 import io.github.moulberry.notenoughupdates.core.config.Position;
-import io.github.moulberry.notenoughupdates.options.NEUConfig;
+import io.github.moulberry.notenoughupdates.config.special.HiddenProfileSpecific;
 import io.github.moulberry.notenoughupdates.util.SBInfo;
 import io.github.moulberry.notenoughupdates.util.Utils;
 import net.minecraft.client.Minecraft;
@@ -46,7 +46,7 @@ public class TimersOverlay extends TextOverlay {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
     public void onChatMessageReceived(ClientChatReceivedEvent event) {
-        NEUConfig.HiddenProfileSpecific hidden = NotEnoughUpdates.INSTANCE.config.getProfileSpecific();
+        HiddenProfileSpecific hidden = NotEnoughUpdates.INSTANCE.config.getProfileSpecific();
         if(hidden == null) return;
 
         if(event.type == 0) {
@@ -159,7 +159,7 @@ public class TimersOverlay extends TextOverlay {
 
         long currentTime = System.currentTimeMillis();
 
-        NEUConfig.HiddenProfileSpecific hidden = NotEnoughUpdates.INSTANCE.config.getProfileSpecific();
+        HiddenProfileSpecific hidden = NotEnoughUpdates.INSTANCE.config.getProfileSpecific();
         if (hidden == null) return;
 
         if (Minecraft.getMinecraft().currentScreen instanceof GuiChest) {

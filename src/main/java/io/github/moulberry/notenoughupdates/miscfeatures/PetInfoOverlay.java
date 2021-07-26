@@ -6,7 +6,7 @@ import io.github.moulberry.notenoughupdates.NEUEventListener;
 import io.github.moulberry.notenoughupdates.NotEnoughUpdates;
 import io.github.moulberry.notenoughupdates.core.config.Position;
 import io.github.moulberry.notenoughupdates.core.util.lerp.LerpUtils;
-import io.github.moulberry.notenoughupdates.options.NEUConfig;
+import io.github.moulberry.notenoughupdates.config.NEUConfig;
 import io.github.moulberry.notenoughupdates.overlays.TextOverlay;
 import io.github.moulberry.notenoughupdates.overlays.TextOverlayStyle;
 import io.github.moulberry.notenoughupdates.profileviewer.GuiProfileViewer;
@@ -31,7 +31,6 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.apache.commons.lang3.text.WordUtils;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.io.*;
@@ -1018,7 +1017,7 @@ public class PetInfoOverlay extends TextOverlay {
 
         JsonObject petsJson = Constants.PETS;
         if(currentPet != null && petsJson != null) {
-            currentPet.petLevel = GuiProfileViewer.getPetLevel(petsJson.get("pet_levels").getAsJsonArray(), currentPet.rarity.petOffset, currentPet.petLevel.totalXp);
+            currentPet.petLevel = GuiProfileViewer.getPetLevel(petsJson.get("pet_levels").getAsJsonArray(), 100,currentPet.rarity.petOffset, currentPet.petLevel.totalXp);
         }
     }
 

@@ -3,13 +3,12 @@ package io.github.moulberry.notenoughupdates.dungeons;
 import io.github.moulberry.notenoughupdates.core.config.gui.GuiPositionEditor;
 import io.github.moulberry.notenoughupdates.core.util.render.RenderUtils;
 import io.github.moulberry.notenoughupdates.core.util.render.TextRenderUtils;
-import io.github.moulberry.notenoughupdates.options.NEUConfig;
 import io.github.moulberry.notenoughupdates.NotEnoughUpdates;
 import io.github.moulberry.notenoughupdates.core.GuiElementColour;
 import io.github.moulberry.notenoughupdates.core.config.annotations.ConfigEditorSlider;
 import io.github.moulberry.notenoughupdates.core.config.annotations.ConfigOption;
 import io.github.moulberry.notenoughupdates.itemeditor.GuiElementTextField;
-import io.github.moulberry.notenoughupdates.options.seperateSections.DungeonMapConfig;
+import io.github.moulberry.notenoughupdates.config.settings.DungeonMapConfig;
 import io.github.moulberry.notenoughupdates.util.SpecialColour;
 import io.github.moulberry.notenoughupdates.util.Utils;
 import net.minecraft.client.Minecraft;
@@ -44,6 +43,8 @@ public class GuiDungeonMapEditor extends GuiScreen {
     private int sizeY;
     private int guiLeft;
     private int guiTop;
+
+    public Color[][] colourMap = null;
 
     private List<Button> buttons = new ArrayList<>();
 

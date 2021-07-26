@@ -8,6 +8,7 @@ import com.google.gson.JsonPrimitive;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import io.github.moulberry.notenoughupdates.auction.CustomAHGui;
+import io.github.moulberry.notenoughupdates.config.special.InventoryButtons;
 import io.github.moulberry.notenoughupdates.core.BackgroundBlur;
 import io.github.moulberry.notenoughupdates.core.GuiScreenElementWrapper;
 import io.github.moulberry.notenoughupdates.core.util.MiscUtils;
@@ -18,7 +19,7 @@ import io.github.moulberry.notenoughupdates.dungeons.DungeonWin;
 import io.github.moulberry.notenoughupdates.gamemodes.SBGamemodes;
 import io.github.moulberry.notenoughupdates.miscfeatures.*;
 import io.github.moulberry.notenoughupdates.miscgui.*;
-import io.github.moulberry.notenoughupdates.options.NEUConfig;
+import io.github.moulberry.notenoughupdates.config.NEUConfig;
 import io.github.moulberry.notenoughupdates.overlays.AuctionSearchOverlay;
 import io.github.moulberry.notenoughupdates.overlays.OverlayManager;
 import io.github.moulberry.notenoughupdates.overlays.RancherBootOverlay;
@@ -972,7 +973,7 @@ public class NEUEventListener {
             int guiLeft = ((GuiContainer)event.gui).guiLeft;
             int guiTop = ((GuiContainer)event.gui).guiTop;
 
-            for(NEUConfig.InventoryButton button : NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons) {
+            for(InventoryButtons.InventoryButton button : NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons) {
                 if(!button.isActive()) continue;
                 if(button.playerInvOnly && !(event.gui instanceof GuiInventory)) continue;
 
@@ -1016,7 +1017,7 @@ public class NEUEventListener {
     }
 
     private static final ResourceLocation EDITOR = new ResourceLocation("notenoughupdates:invbuttons/editor.png");
-    private NEUConfig.InventoryButton buttonHovered = null;
+    private InventoryButtons.InventoryButton buttonHovered = null;
     private long buttonHoveredMillis = 0;
     public static boolean disableCraftingText = false;
 
@@ -1074,7 +1075,7 @@ public class NEUEventListener {
             int guiLeft = ((GuiContainer)event.gui).guiLeft;
             int guiTop = ((GuiContainer)event.gui).guiTop;
 
-            for(NEUConfig.InventoryButton button : NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons) {
+            for(InventoryButtons.InventoryButton button : NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons) {
                 if(!button.isActive()) continue;
                 if(button.playerInvOnly && !(event.gui instanceof GuiInventory)) continue;
 
@@ -1399,7 +1400,7 @@ public class NEUEventListener {
             int guiLeft = ((GuiContainer)event.gui).guiLeft;
             int guiTop = ((GuiContainer)event.gui).guiTop;
 
-            for(NEUConfig.InventoryButton button : NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons) {
+            for(InventoryButtons.InventoryButton button : NotEnoughUpdates.INSTANCE.config.hidden.inventoryButtons) {
                 if(!button.isActive()) continue;
                 if(button.playerInvOnly && !(event.gui instanceof GuiInventory)) continue;
 
