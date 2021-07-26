@@ -1,4 +1,4 @@
-package io.github.moulberry.notenoughupdates.options.seperateSections;
+package io.github.moulberry.notenoughupdates.config.settings;
 
 import com.google.gson.annotations.Expose;
 import io.github.moulberry.notenoughupdates.core.config.annotations.*;
